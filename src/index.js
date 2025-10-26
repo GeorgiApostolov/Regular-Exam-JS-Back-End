@@ -2,6 +2,9 @@ import express from "express";
 import routes from "./routes.js";
 import handlebars from "express-handlebars";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import methodOverride from "method-override";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
 
 const app = express();
 
@@ -22,6 +25,23 @@ app.engine(
       allowProtoPropertiesByDefault: true,
       allowProtoMethodsByDefault: true,
     },
+    helpers: {
+      setTitle(title) {
+        this.pageTitle = title;
+      },
+      getTitle() {
+        return this.pageTitle || "Myth and Legends";
+      },
+      formatDate(date) {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+      },
+    },
   })
 );
 app.set("view engine", "hbs");
@@ -29,7 +49,13 @@ app.set("views", "src/views");
 
 app.use(express.static("src/public"));
 
+app.use(cookieParser());
+
 app.use(express.urlencoded({ extended: false }));
+
+app.use(methodOverride("_method"));
+
+app.use(authMiddleware);
 
 app.use(routes);
 

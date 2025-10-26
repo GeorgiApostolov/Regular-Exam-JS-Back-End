@@ -1,0 +1,30 @@
+{
+  "name": "regular-exam-js-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgiApostolov/Regular-Exam-JS-Back-End.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgiApostolov/Regular-Exam-JS-Back-End/issues"
+  },
+  "homepage": "https://github.com/GeorgiApostolov/Regular-Exam-JS-Back-End#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.19.2"
+  }
+}

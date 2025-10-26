@@ -1,0 +1,82 @@
+{{setTitle "Details Page"}}
+<main class="details">
+  <!-- Details page -->
+  <section id="details">
+    <div id="details-wrapper">
+      <p id="details-title">Name: {{myth.name}}</p>
+      <div id="img-wrapper">
+        <img src="{{myth.image}}" alt="{{myth.name}}" />
+      </div>
+      <div id="info-wrapper">
+        <table>
+          <tr>
+            <td>
+              <p>
+                Origin:
+                <span id="details-origin">{{myth.origin}}</span>
+              </p>
+            </td>
+            <td>
+              <p>Role: <span id="details-role">{{myth.role}}</span></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Symbol / Attribute:
+                <span id="details-symbol">{{myth.symbol}}</span></p>
+            </td>
+            <td>
+              <p>Era: <span id="details-era">{{myth.era}}</span></p>
+            </td>
+          </tr>
+        </table>
+        <p>Description:
+          <span id="details-description">
+            {{myth.description}}
+          </span>
+        </p>
+      </div>
+
+      <!--Edit and Delete are only for creator-->
+      {{#if isAuthenticated}}
+        <div id="action-buttons">
+          {{#if isOwner}}
+            <a href="/myths/edit/{{myth._id}}" id="edit-btn">Edit</a>
+            <a
+              href="#"
+              id="delete-btn"
+              data-myth-id="{{myth._id}}"
+              onclick="deleteMyth(event, this.dataset.mythId)"
+            >Delete</a>
+          {{else}}
+            {{#if hasLiked}}
+              <p id="already-liked">You've already liked this legend!</p>
+            {{else}}
+              <form
+                action="/myths/details/{{myth._id}}/like"
+                method="POST"
+                style="display: inline-block;"
+              >
+                <button
+                  type="submit"
+                  id="like-btn"
+                  class="action-button"
+                >Like</button>
+              </form>
+            {{/if}}
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
+  </section>
+</main>
+
+<script>
+  function deleteMyth(event, mythId) { event.preventDefault(); const confirmed =
+  confirm('Are you sure you want to delete this myth?'); if (!confirmed) return;
+  const form = document.createElement('form'); form.method = 'POST'; form.action
+  = `/myths/delete/${mythId}`; const methodInput =
+  document.createElement('input'); methodInput.type = 'hidden'; methodInput.name
+  = '_method'; methodInput.value = 'DELETE'; form.appendChild(methodInput);
+  document.body.appendChild(form); form.submit(); }
+</script>

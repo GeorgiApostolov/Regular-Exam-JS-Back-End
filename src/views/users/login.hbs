@@ -3,8 +3,19 @@
   <section id="login">
     <div class="form">
       <h2>Login</h2>
+      {{#if error}}
+        <div class="errorContainer">
+          <p>{{error}}</p>
+        </div>
+      {{/if}}
       <form class="login-form" method="POST">
-        <input type="text" name="email" id="email" placeholder="email" />
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="email"
+          value="{{user.email}}"
+        />
         <input
           type="password"
           name="password"

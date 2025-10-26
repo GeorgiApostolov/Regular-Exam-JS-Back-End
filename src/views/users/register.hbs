@@ -3,12 +3,18 @@
   <section id="register">
     <div class="form">
       <h2>Register</h2>
+      {{#if error}}
+        <div class="errorContainer">
+          <p>{{error}}</p>
+        </div>
+      {{/if}}
       <form class="login-form" method="POST" action="/users/register">
         <input
           type="text"
           name="email"
           id="register-email"
           placeholder="email"
+          value="{{user.email}}"
         />
         <input
           type="password"

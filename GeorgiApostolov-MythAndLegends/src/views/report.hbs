@@ -1,0 +1,26 @@
+{{setTitle "Report Page"}}
+<main class="report-section">
+  <section id="report-section">
+    <h2>Report</h2>
+    <ul class="report-list">
+      {{#if myths}}
+        <ul id="report-list">
+          {{#each myths}}
+            <li class="report-card">
+              <img src="{{image}}" />
+              <h3>{{name}}</h3>
+              <p><strong>Origin:</strong> <br /> {{origin}}</p>
+              <p><strong>Role:</strong> <br /> {{role}}</p>
+              <p><strong>Symbol:</strong> <br />{{symbol}}</p>
+              <p><strong>Era:</strong> <br /> {{era}}</p>
+              <p><strong>Created on:</strong> <br />{{formatDate createdAt}}</p>
+              <p><strong>Owner:</strong> <br /> {{owner.email}}</p>
+            </li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <h2 id="no-post">There are no myths and legends!</h2>
+      {{/if}}
+    </ul>
+  </section>
+</main>
