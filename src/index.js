@@ -7,7 +7,7 @@ const app = express();
 
 try {
   await mongoose.connect("mongodb://localhost:27017", {
-    dbName: "Myth & Legends",
+    dbName: "Myth-and-Legends",
   });
   console.log("Database connected successfully!");
 } catch (err) {

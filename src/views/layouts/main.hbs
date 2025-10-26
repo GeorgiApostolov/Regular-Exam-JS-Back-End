@@ -22,7 +22,7 @@
         <!-- Navigation -->
         <nav>
           <div>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <a href="#">Dashboard</a>
             <a href="#">Report</a>
           </div>
@@ -30,20 +30,18 @@
           <!-- Logged-in users -->
           <div class="user">
             <a href="#">Add Myth</a>
-            <a href="#">Logout</a>
+            <a href="/users/logout">Logout</a>
           </div>
 
           <!-- Guest users -->
           <div class="guest">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
+            <a href="/users/Login">Login</a>
+            <a href="/users/register">Register</a>
           </div>
         </nav>
       </header>
 
-      <main class="home">
-        {{{body}}}
-      </main>
+      {{{body}}}
     </div>
     <footer>SoftUni JS Back-End Exam 2025 &copy;</footer>
   </body>
