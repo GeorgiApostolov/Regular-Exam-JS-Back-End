@@ -1,8 +1,18 @@
 import express from "express";
 import routes from "./routes.js";
 import handlebars from "express-handlebars";
+import mongoose from "mongoose";
 
 const app = express();
+
+try {
+  await mongoose.connect("mongodb://localhost:27017", {
+    dbName: "Myth & Legends",
+  });
+  console.log("Database connected successfully!");
+} catch (err) {
+  console.error("Cannot connect to database: ", err.message());
+}
 
 app.engine(
   "hbs",
